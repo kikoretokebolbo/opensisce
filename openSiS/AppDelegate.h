@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ViewController.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property(strong,nonatomic)NSMutableDictionary *dic,*dic_techinfo,*dic_term,*dic_year,*dic_sub,*dic_course,*dic_school;
+
+@property(strong,nonatomic)NSMutableArray *cp_value;
+@property(strong,nonatomic)ViewController *viewController;
+@property(strong,nonatomic)UINavigationController *navigation;
 
 @end
 

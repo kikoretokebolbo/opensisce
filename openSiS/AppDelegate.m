@@ -13,9 +13,12 @@
 @end
 
 @implementation AppDelegate
-
+@synthesize dic,dic_techinfo,cp_value,dic_term,dic_course,dic_sub,dic_year,dic_school;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [application setStatusBarHidden:YES];
+    
+   
     // Override point for customization after application launch.
     return YES;
 }
