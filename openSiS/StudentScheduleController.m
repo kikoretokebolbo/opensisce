@@ -8,8 +8,13 @@
 
 #import "StudentScheduleController.h"
 #import "TeacherDashboardViewController.h"
+#import "AdvancedStudentScheduleController.h"
+#import "StudentListController.h"
+#import "AppDelegate.h"
+#import "ip_url.h"
+#import "AFNetworking.h"
 
-@interface StudentScheduleController ()<UITextFieldDelegate>
+@interface StudentScheduleController ()<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *text_lastname, *text_firstname, *text_studentid, *text_altid, *text_streetaddress, *text_city, *text_state, *text_postcode, *text_grade, *text_activity;
 
@@ -20,17 +25,33 @@
 
 @property (weak, nonatomic) IBOutlet UIView *view_lastname, *view_firstname, *view_studentid, *view_altid, *view_streetaddress, *view_city, *view_state, *view_postcode, *view_grade, *view_activity;
 
+@property(strong, nonatomic) NSString *senderString;
+
 
 - (IBAction)action_save:(id)sender;
+
+- (IBAction)advancedSearch:(id)sender;
 
 @end
 
 @implementation StudentScheduleController
+{
+    UIPickerView *picker1, *picker2;
+    NSMutableArray *array_pick1, *array_pick2;
+    NSString *grade_id,*activity_id;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    array_pick1 = [[NSMutableArray alloc]init];
+    array_pick2 = [[NSMutableArray alloc]init];
     // Do any additional setup after loading the view.
     [self.scroll setContentSize:CGSizeMake(self.scroll.frame.size.width, self.button_save.frame.origin.y + 80)];
+    grade_id = @""; activity_id = @"";
+    [self loaddata];
+    [self loadPicker1];
+    [self loadPicker2];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,6 +74,70 @@
     [self dodesignsforTextViews:self.view_studentid];
     
 }
+
+#pragma mark - picker DataLoad Webservices
+
+-(void)loaddata
+{
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //[MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self performSelector:@selector(loaddata1) withObject:nil afterDelay:3.0];
+        });
+    });
+    
+    
+}
+-(void)loaddata1
+{
+    // http://107.170.94.176/openSIS_CE6_Mobile/webservice/view_schedule_search.php?staff_id=2&syear=2015&school_id=1
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSString *school_id123456=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"SCHOOL_ID"]];
+    NSString *str_school_year=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"SYEAR"]];
+    
+    NSUserDefaults *DF=[NSUserDefaults standardUserDefaults];
+    NSString *STAFF_ID_K=[DF objectForKey:@"iphone"];
+    
+    ip_url *obj123=[[ip_url alloc]init];
+    NSString *str123=[obj123 ipurl];
+    NSString*str_checklogin=[NSString stringWithFormat:@"/view_schedule_search.php?staff_id=%@&syear=%@&school_id=%@",STAFF_ID_K,str_school_year,school_id123456];
+    NSLog(@"kkkkkkkkkkk%@",str_checklogin);
+    NSString *url12=[NSString stringWithFormat:@"%@%@",str123,str_checklogin];
+    
+    NSLog(@"----%@",url12);
+    NSURL *url = [NSURL URLWithString:url12];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    
+    // 2
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"]; // Add korlam bcoz sob content type support korena
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSMutableDictionary *  dictionary1=[[NSMutableDictionary alloc]init];
+        dictionary1 = (NSMutableDictionary *)responseObject;
+        NSLog(@"value is-------%@",dictionary1); // ei khanei nslog korle dekhache, blocker baire dekhache na
+       
+        array_pick1 = [dictionary1 objectForKey:@"grade_data"];
+        array_pick2 = [dictionary1 objectForKey:@"activity_data"];
+        
+        [picker1 reloadAllComponents];
+        [picker2 reloadAllComponents];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    [operation start];
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+}
+
+
 
 #pragma mark - Designs
 
@@ -88,8 +173,71 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+- (NSString *)gettheString
+{
+    self.senderString = @"";
+    
+    if (self.text_lastname.text.length > 0) {
+        self.senderString = [NSString stringWithFormat:@"%@&last=%@",self.senderString,self.text_lastname.text];
+    }
+    
+    if (self.text_firstname.text.length > 0) {
+        self.senderString = [NSString stringWithFormat:@"%@&first=%@",self.senderString,self.text_firstname.text];
+    }
+    
+    if (activity_id.length > 0) {
+        self.senderString = [NSString stringWithFormat:@"%@&activity_id=%@",self.senderString,activity_id];
+    }
+    
+    if (self.text_altid.text.length > 0) {
+        self.senderString = [NSString stringWithFormat:@"%@&altid=%@",self.senderString,self.text_altid.text];
+    }
+    
+//    if (self.text_city.text.length > 0) {
+//        self.senderString = [NSString stringWithFormat:@"%@&city=%@",self.senderString,self.text_city.text];
+//    }
+    
+    if (grade_id.length > 0) {
+        self.senderString = [NSString stringWithFormat:@"%@&grade=%@",self.senderString,grade_id];
+    }
+    
+//    if (self.text_postcode.text.length > 0) {
+//        self.senderString = [NSString stringWithFormat:@"%@&%@",self.senderString,self.text_postcode.text];
+//    }
+    
+//    if (self.text_state.text.length > 0) {
+//        self.senderString = [NSString stringWithFormat:@"%@&%@",self.senderString,self.text_state.text];
+//    }
+    
+    if (self.text_streetaddress.text.length > 0) {
+        self.senderString = [NSString stringWithFormat:@"%@&addr=%@",self.senderString,self.text_streetaddress.text];
+    }
+    
+    if (self.text_studentid.text.length > 0) {
+        self.senderString = [NSString stringWithFormat:@"%@&stuid=%@",self.senderString,self.text_studentid.text];
+        
+    }
+    
+    NSLog(@"The Parameter String: %@", self.senderString);
+    return self.senderString;
+}
+
+
+
 - (IBAction)action_save:(id)sender
 {
+    
+    
+    
+    
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    StudentListController *slc = [[StudentListController alloc]init];
+    slc = [sb instantiateViewControllerWithIdentifier:@"studentlist"];
+    slc.senderString = [self gettheString];
+    
+    [self.navigationController pushViewController:slc animated:YES];
     
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -101,6 +249,129 @@
 - (IBAction)advancedSearch:(id)sender
 {
     
+    
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AdvancedStudentScheduleController *assc = [[AdvancedStudentScheduleController alloc]init];
+    assc = [sb instantiateViewControllerWithIdentifier:@"studentscheduleadvanced"];
+    assc.senderString = [self gettheString];
+    
+    
+    [self.navigationController pushViewController:assc animated:YES];
 }
 
+
+-(void)loadPicker1{
+    
+    picker1 = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    picker1  .delegate = self;
+    picker1 .dataSource = self;
+    
+    [ picker1  setShowsSelectionIndicator:YES];
+   // picker1.tag=3;
+    self.text_grade.inputView = picker1;
+    
+    UIToolbar*  mypickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 56)];
+    
+    mypickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    
+    [mypickerToolbar sizeToFit];
+    
+    NSMutableArray *barItems = [[NSMutableArray alloc] init];
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    [barItems addObject:flexSpace];
+    
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismisspicker)];
+    
+    [barItems addObject:doneBtn];
+    
+    [mypickerToolbar setItems:barItems animated:YES];
+    
+    self.text_grade.inputAccessoryView = mypickerToolbar;
+    
+}
+-(void)loadPicker2{
+    
+    picker2 = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    picker2  .delegate = self;
+    picker2 .dataSource = self;
+    
+    [ picker2  setShowsSelectionIndicator:YES];
+    // picker1.tag=3;
+    self.text_activity.inputView = picker2;
+    
+    UIToolbar*  mypickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 56)];
+    
+    mypickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    
+    [mypickerToolbar sizeToFit];
+    
+    NSMutableArray *barItems = [[NSMutableArray alloc] init];
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    [barItems addObject:flexSpace];
+    
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismisspicker)];
+    
+    [barItems addObject:doneBtn];
+    
+    [mypickerToolbar setItems:barItems animated:YES];
+    
+    self.text_activity.inputAccessoryView = mypickerToolbar;
+    
+}
+
+- (void)dismisspicker
+{
+    [self.text_activity resignFirstResponder];
+    [self.text_grade resignFirstResponder];
+    
+}
+
+#pragma mark - pickerview delegate datasource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    
+    return 1;
+}
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (pickerView == picker1) {
+        return array_pick1.count;
+    }
+    else
+    {
+        return array_pick2.count;
+    }
+    return 0;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (pickerView == picker1) {
+        return [NSString stringWithFormat:@"%@",[[array_pick1 objectAtIndex:row]objectForKey:@"TITLE"]];
+    }
+    else
+    {
+        return [NSString stringWithFormat:@"%@",[[array_pick2 objectAtIndex:row]objectForKey:@"TITLE"]];
+    }
+    return 0;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    if (pickerView == picker1) {
+        self.text_grade.text = [NSString stringWithFormat:@"%@",[[array_pick1 objectAtIndex:row]objectForKey:@"TITLE"]];
+        grade_id = [NSString stringWithFormat:@"%@",[[array_pick1 objectAtIndex:row]objectForKey:@"ID"]];
+        
+    }
+    else
+    {
+        self.text_activity.text = [NSString stringWithFormat:@"%@",[[array_pick2 objectAtIndex:row]objectForKey:@"TITLE"]];
+        activity_id = [NSString stringWithFormat:@"%@",[[array_pick2 objectAtIndex:row]objectForKey:@"ID"]];
+    }
+
+}
 @end

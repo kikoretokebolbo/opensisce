@@ -153,7 +153,7 @@
 {
     
     obj.layer.borderWidth =  1.0f;
-    obj.layer.borderColor = [[UIColor colorWithRed:0.808f green:0.808f blue:0.808f alpha:1.00f]CGColor];
+    obj.layer.borderColor = [ [UIColor colorWithRed:0.808f green:0.808f blue:0.808f alpha:1.00f]CGColor];
     [obj.layer setCornerRadius:3.5f];
     obj.clipsToBounds = YES;
     

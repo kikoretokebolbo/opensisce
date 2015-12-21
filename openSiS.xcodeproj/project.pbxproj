@@ -34,11 +34,15 @@
 		066AA5531B79FCC100C39A48 /* loginbtnarrow_bg.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 066AA5521B79FCC100C39A48 /* loginbtnarrow_bg.9.png */; };
 		066DF2F31BEB3E3F0027E9E1 /* GradebookConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DF2F21BEB3E3F0027E9E1 /* GradebookConfigController.m */; };
 		066DF2F71BEB3E7F0027E9E1 /* GeneralController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066DF2F61BEB3E7F0027E9E1 /* GeneralController.m */; };
+		067282511C19572800A07E58 /* StudentScheduleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 067282501C19572800A07E58 /* StudentScheduleViewCell.m */; };
+		067282541C19574500A07E58 /* StudentScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 067282531C19574500A07E58 /* StudentScheduleViewController.m */; };
 		0677F00B1C15630400926C4E /* AdvancedStudentScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0677F00A1C15630400926C4E /* AdvancedStudentScheduleController.m */; };
 		0678B8C21BF5ED5C00D59C21 /* redfoot.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0678B8C11BF5ED5C00D59C21 /* redfoot.xib */; };
 		0678EA8E1B870AA60056B412 /* downArow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0678EA8D1B870AA60056B412 /* downArow.png */; };
 		0691C27B1BDF8C3A00BAB7A4 /* AddAssignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0691C27A1BDF8C3A00BAB7A4 /* AddAssignmentViewController.m */; };
 		069770051BECC78100B602C6 /* finalgradecell.m in Sources */ = {isa = PBXBuildFile; fileRef = 069770031BECC78100B602C6 /* finalgradecell.m */; };
+		069F3DFA1C18348D008D76FA /* StudentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 069F3DF91C18348D008D76FA /* StudentListController.m */; };
+		069F3DFE1C1834C0008D76FA /* StudentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 069F3DFD1C1834C0008D76FA /* StudentListCell.m */; };
 		06A69FAD1BE0D64800570D33 /* ClassWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A69FAC1BE0D64800570D33 /* ClassWorkViewController.m */; };
 		06A69FB21BE0DCCF00570D33 /* ClassWorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A69FB01BE0DCCF00570D33 /* ClassWorkCell.m */; };
 		06A69FB31BE0DCCF00570D33 /* ClassWorkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A69FB11BE0DCCF00570D33 /* ClassWorkCell.xib */; };
@@ -51,6 +55,21 @@
 		06DB32951BFB067E004EA16A /* GradesAssignmentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DB32941BFB067E004EA16A /* GradesAssignmentType.m */; };
 		06DD1DC61C02F87400CD5012 /* PostfinalgradesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DD1DC51C02F87400CD5012 /* PostfinalgradesController.m */; };
 		06DD1DC91C02F8B400CD5012 /* Postfinalgradecell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DD1DC81C02F8B400CD5012 /* Postfinalgradecell.m */; };
+		06DDF9A01C1ED9510027BDB1 /* NSDate+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DDF9991C1ED9510027BDB1 /* NSDate+CL.m */; };
+		06DDF9A11C1ED9510027BDB1 /* NSDictionary+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DDF99B1C1ED9510027BDB1 /* NSDictionary+CL.m */; };
+		06DDF9A21C1ED9510027BDB1 /* UIColor+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DDF99D1C1ED9510027BDB1 /* UIColor+CL.m */; };
+		06DDF9A31C1ED9510027BDB1 /* UIImage+CL.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DDF99F1C1ED9510027BDB1 /* UIImage+CL.m */; };
+		06DDF9AA1C1ED95E0027BDB1 /* CLWeeklyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DDF9A51C1ED95E0027BDB1 /* CLWeeklyCalendarView.m */; };
+		06DDF9AB1C1ED95E0027BDB1 /* DailyCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DDF9A71C1ED95E0027BDB1 /* DailyCalendarView.m */; };
+		06DDF9AC1C1ED95E0027BDB1 /* DayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DDF9A91C1ED95E0027BDB1 /* DayTitleLabel.m */; };
+		06DDF9AF1C1EE7330027BDB1 /* WeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DDF9AE1C1EE7330027BDB1 /* WeekViewController.m */; };
+		06DDF9B31C1EE7620027BDB1 /* WeekViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06DDF9B21C1EE7620027BDB1 /* WeekViewCell.m */; };
+		8724AC2B1C23E68D0023E11C /* MonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8724AC2A1C23E68D0023E11C /* MonthViewController.m */; };
+		8724AC361C23E6AD0023E11C /* NSDate+convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 8724AC2D1C23E6AD0023E11C /* NSDate+convenience.m */; };
+		8724AC371C23E6AD0023E11C /* NSMutableArray+convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 8724AC2F1C23E6AD0023E11C /* NSMutableArray+convenience.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8724AC381C23E6AD0023E11C /* UIColor+expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 8724AC311C23E6AD0023E11C /* UIColor+expanded.m */; };
+		8724AC391C23E6AD0023E11C /* UIView+convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 8724AC331C23E6AD0023E11C /* UIView+convenience.m */; };
+		8724AC3A1C23E6AD0023E11C /* VRGCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8724AC351C23E6AD0023E11C /* VRGCalendarView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		872668D61B81DF6000D0DD0D /* TeacherDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 872668D51B81DF6000D0DD0D /* TeacherDashboardViewController.m */; };
 		87324EBC1B9EC159005B5852 /* b1.png in Resources */ = {isa = PBXBuildFile; fileRef = 87324EBB1B9EC159005B5852 /* b1.png */; };
 		8748C9911B79C62500276D9C /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8748C97F1B79C62500276D9C /* AFHTTPRequestOperation.m */; };
@@ -194,6 +213,10 @@
 		066DF2F21BEB3E3F0027E9E1 /* GradebookConfigController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradebookConfigController.m; sourceTree = "<group>"; };
 		066DF2F51BEB3E7F0027E9E1 /* GeneralController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralController.h; sourceTree = "<group>"; };
 		066DF2F61BEB3E7F0027E9E1 /* GeneralController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralController.m; sourceTree = "<group>"; };
+		0672824F1C19572800A07E58 /* StudentScheduleViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentScheduleViewCell.h; sourceTree = "<group>"; };
+		067282501C19572800A07E58 /* StudentScheduleViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentScheduleViewCell.m; sourceTree = "<group>"; };
+		067282521C19574500A07E58 /* StudentScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentScheduleViewController.h; sourceTree = "<group>"; };
+		067282531C19574500A07E58 /* StudentScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentScheduleViewController.m; sourceTree = "<group>"; };
 		0677F0091C15630400926C4E /* AdvancedStudentScheduleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvancedStudentScheduleController.h; sourceTree = "<group>"; };
 		0677F00A1C15630400926C4E /* AdvancedStudentScheduleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvancedStudentScheduleController.m; sourceTree = "<group>"; };
 		0678B8C11BF5ED5C00D59C21 /* redfoot.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = redfoot.xib; sourceTree = "<group>"; };
@@ -202,6 +225,10 @@
 		0691C27A1BDF8C3A00BAB7A4 /* AddAssignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAssignmentViewController.m; sourceTree = "<group>"; };
 		069770021BECC78100B602C6 /* finalgradecell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finalgradecell.h; sourceTree = "<group>"; };
 		069770031BECC78100B602C6 /* finalgradecell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finalgradecell.m; sourceTree = "<group>"; };
+		069F3DF81C18348D008D76FA /* StudentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentListController.h; sourceTree = "<group>"; };
+		069F3DF91C18348D008D76FA /* StudentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentListController.m; sourceTree = "<group>"; };
+		069F3DFC1C1834C0008D76FA /* StudentListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentListCell.h; sourceTree = "<group>"; };
+		069F3DFD1C1834C0008D76FA /* StudentListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentListCell.m; sourceTree = "<group>"; };
 		06A69FAB1BE0D64800570D33 /* ClassWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassWorkViewController.h; sourceTree = "<group>"; };
 		06A69FAC1BE0D64800570D33 /* ClassWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassWorkViewController.m; sourceTree = "<group>"; };
 		06A69FAF1BE0DCCF00570D33 /* ClassWorkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassWorkCell.h; sourceTree = "<group>"; };
@@ -223,6 +250,36 @@
 		06DD1DC51C02F87400CD5012 /* PostfinalgradesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostfinalgradesController.m; sourceTree = "<group>"; };
 		06DD1DC71C02F8B400CD5012 /* Postfinalgradecell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Postfinalgradecell.h; sourceTree = "<group>"; };
 		06DD1DC81C02F8B400CD5012 /* Postfinalgradecell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Postfinalgradecell.m; sourceTree = "<group>"; };
+		06DDF9981C1ED9510027BDB1 /* NSDate+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CL.h"; sourceTree = "<group>"; };
+		06DDF9991C1ED9510027BDB1 /* NSDate+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CL.m"; sourceTree = "<group>"; };
+		06DDF99A1C1ED9510027BDB1 /* NSDictionary+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CL.h"; sourceTree = "<group>"; };
+		06DDF99B1C1ED9510027BDB1 /* NSDictionary+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CL.m"; sourceTree = "<group>"; };
+		06DDF99C1C1ED9510027BDB1 /* UIColor+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CL.h"; sourceTree = "<group>"; };
+		06DDF99D1C1ED9510027BDB1 /* UIColor+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CL.m"; sourceTree = "<group>"; };
+		06DDF99E1C1ED9510027BDB1 /* UIImage+CL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+CL.h"; sourceTree = "<group>"; };
+		06DDF99F1C1ED9510027BDB1 /* UIImage+CL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+CL.m"; sourceTree = "<group>"; };
+		06DDF9A41C1ED95E0027BDB1 /* CLWeeklyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLWeeklyCalendarView.h; sourceTree = "<group>"; };
+		06DDF9A51C1ED95E0027BDB1 /* CLWeeklyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLWeeklyCalendarView.m; sourceTree = "<group>"; };
+		06DDF9A61C1ED95E0027BDB1 /* DailyCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DailyCalendarView.h; sourceTree = "<group>"; };
+		06DDF9A71C1ED95E0027BDB1 /* DailyCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DailyCalendarView.m; sourceTree = "<group>"; };
+		06DDF9A81C1ED95E0027BDB1 /* DayTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayTitleLabel.h; sourceTree = "<group>"; };
+		06DDF9A91C1ED95E0027BDB1 /* DayTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayTitleLabel.m; sourceTree = "<group>"; };
+		06DDF9AD1C1EE7330027BDB1 /* WeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekViewController.h; sourceTree = "<group>"; };
+		06DDF9AE1C1EE7330027BDB1 /* WeekViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekViewController.m; sourceTree = "<group>"; };
+		06DDF9B11C1EE7620027BDB1 /* WeekViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekViewCell.h; sourceTree = "<group>"; };
+		06DDF9B21C1EE7620027BDB1 /* WeekViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekViewCell.m; sourceTree = "<group>"; };
+		8724AC291C23E68D0023E11C /* MonthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthViewController.h; sourceTree = "<group>"; };
+		8724AC2A1C23E68D0023E11C /* MonthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthViewController.m; sourceTree = "<group>"; };
+		8724AC2C1C23E6AD0023E11C /* NSDate+convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+convenience.h"; sourceTree = "<group>"; };
+		8724AC2D1C23E6AD0023E11C /* NSDate+convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+convenience.m"; sourceTree = "<group>"; };
+		8724AC2E1C23E6AD0023E11C /* NSMutableArray+convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+convenience.h"; sourceTree = "<group>"; };
+		8724AC2F1C23E6AD0023E11C /* NSMutableArray+convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+convenience.m"; sourceTree = "<group>"; };
+		8724AC301C23E6AD0023E11C /* UIColor+expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+expanded.h"; sourceTree = "<group>"; };
+		8724AC311C23E6AD0023E11C /* UIColor+expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+expanded.m"; sourceTree = "<group>"; };
+		8724AC321C23E6AD0023E11C /* UIView+convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+convenience.h"; sourceTree = "<group>"; };
+		8724AC331C23E6AD0023E11C /* UIView+convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+convenience.m"; sourceTree = "<group>"; };
+		8724AC341C23E6AD0023E11C /* VRGCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRGCalendarView.h; sourceTree = "<group>"; };
+		8724AC351C23E6AD0023E11C /* VRGCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRGCalendarView.m; sourceTree = "<group>"; };
 		872668D41B81DF6000D0DD0D /* TeacherDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherDashboardViewController.h; sourceTree = "<group>"; };
 		872668D51B81DF6000D0DD0D /* TeacherDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherDashboardViewController.m; sourceTree = "<group>"; };
 		87324EBB1B9EC159005B5852 /* b1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b1.png; sourceTree = "<group>"; };
@@ -453,6 +510,8 @@
 				0669713B1C10317C009D7BBD /* StudentScheduleController.h */,
 				0669713C1C10317C009D7BBD /* StudentScheduleController.m */,
 				0677F00C1C15630800926C4E /* Advanced Search */,
+				069F3DFB1C183495008D76FA /* Student List */,
+				067282551C19574A00A07E58 /* StudentScheduleView */,
 			);
 			name = "Student Schedule";
 			sourceTree = "<group>";
@@ -523,6 +582,19 @@
 			name = "Final Grade Percent";
 			sourceTree = "<group>";
 		};
+		067282551C19574A00A07E58 /* StudentScheduleView */ = {
+			isa = PBXGroup;
+			children = (
+				0672824F1C19572800A07E58 /* StudentScheduleViewCell.h */,
+				067282501C19572800A07E58 /* StudentScheduleViewCell.m */,
+				067282521C19574500A07E58 /* StudentScheduleViewController.h */,
+				067282531C19574500A07E58 /* StudentScheduleViewController.m */,
+				8724AC281C23E65A0023E11C /* Month */,
+				06DDF9B01C1EE7390027BDB1 /* Week View */,
+			);
+			name = StudentScheduleView;
+			sourceTree = "<group>";
+		};
 		0677F00C1C15630800926C4E /* Advanced Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,6 +611,17 @@
 				0691C27A1BDF8C3A00BAB7A4 /* AddAssignmentViewController.m */,
 			);
 			name = "Add Assignment";
+			sourceTree = "<group>";
+		};
+		069F3DFB1C183495008D76FA /* Student List */ = {
+			isa = PBXGroup;
+			children = (
+				069F3DF81C18348D008D76FA /* StudentListController.h */,
+				069F3DF91C18348D008D76FA /* StudentListController.m */,
+				069F3DFC1C1834C0008D76FA /* StudentListCell.h */,
+				069F3DFD1C1834C0008D76FA /* StudentListCell.m */,
+			);
+			name = "Student List";
 			sourceTree = "<group>";
 		};
 		06A69FAE1BE0D65700570D33 /* ClassWork */ = {
@@ -612,6 +695,65 @@
 				06DD1DC81C02F8B400CD5012 /* Postfinalgradecell.m */,
 			);
 			name = "Post Final Grades";
+			sourceTree = "<group>";
+		};
+		06DDF9961C1ED9150027BDB1 /* Calendar Week */ = {
+			isa = PBXGroup;
+			children = (
+				06DDF9A41C1ED95E0027BDB1 /* CLWeeklyCalendarView.h */,
+				06DDF9A51C1ED95E0027BDB1 /* CLWeeklyCalendarView.m */,
+				06DDF9A61C1ED95E0027BDB1 /* DailyCalendarView.h */,
+				06DDF9A71C1ED95E0027BDB1 /* DailyCalendarView.m */,
+				06DDF9A81C1ED95E0027BDB1 /* DayTitleLabel.h */,
+				06DDF9A91C1ED95E0027BDB1 /* DayTitleLabel.m */,
+				06DDF9971C1ED9440027BDB1 /* Misc */,
+			);
+			name = "Calendar Week";
+			sourceTree = "<group>";
+		};
+		06DDF9971C1ED9440027BDB1 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				06DDF9981C1ED9510027BDB1 /* NSDate+CL.h */,
+				06DDF9991C1ED9510027BDB1 /* NSDate+CL.m */,
+				06DDF99A1C1ED9510027BDB1 /* NSDictionary+CL.h */,
+				06DDF99B1C1ED9510027BDB1 /* NSDictionary+CL.m */,
+				06DDF99C1C1ED9510027BDB1 /* UIColor+CL.h */,
+				06DDF99D1C1ED9510027BDB1 /* UIColor+CL.m */,
+				06DDF99E1C1ED9510027BDB1 /* UIImage+CL.h */,
+				06DDF99F1C1ED9510027BDB1 /* UIImage+CL.m */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		06DDF9B01C1EE7390027BDB1 /* Week View */ = {
+			isa = PBXGroup;
+			children = (
+				06DDF9AD1C1EE7330027BDB1 /* WeekViewController.h */,
+				06DDF9AE1C1EE7330027BDB1 /* WeekViewController.m */,
+				06DDF9B11C1EE7620027BDB1 /* WeekViewCell.h */,
+				06DDF9B21C1EE7620027BDB1 /* WeekViewCell.m */,
+			);
+			name = "Week View";
+			sourceTree = "<group>";
+		};
+		8724AC281C23E65A0023E11C /* Month */ = {
+			isa = PBXGroup;
+			children = (
+				8724AC2C1C23E6AD0023E11C /* NSDate+convenience.h */,
+				8724AC2D1C23E6AD0023E11C /* NSDate+convenience.m */,
+				8724AC2E1C23E6AD0023E11C /* NSMutableArray+convenience.h */,
+				8724AC2F1C23E6AD0023E11C /* NSMutableArray+convenience.m */,
+				8724AC301C23E6AD0023E11C /* UIColor+expanded.h */,
+				8724AC311C23E6AD0023E11C /* UIColor+expanded.m */,
+				8724AC321C23E6AD0023E11C /* UIView+convenience.h */,
+				8724AC331C23E6AD0023E11C /* UIView+convenience.m */,
+				8724AC341C23E6AD0023E11C /* VRGCalendarView.h */,
+				8724AC351C23E6AD0023E11C /* VRGCalendarView.m */,
+				8724AC291C23E68D0023E11C /* MonthViewController.h */,
+				8724AC2A1C23E68D0023E11C /* MonthViewController.m */,
+			);
+			name = Month;
 			sourceTree = "<group>";
 		};
 		872668D31B81DF4000D0DD0D /* Teacher Dashboard */ = {
@@ -768,6 +910,7 @@
 		87D84C781B78828B00FEA1CE = {
 			isa = PBXGroup;
 			children = (
+				06DDF9961C1ED9150027BDB1 /* Calendar Week */,
 				87D94B2C1BB1B588007118B8 /* UIKit.framework */,
 				87D94B2A1BB1B581007118B8 /* Foundation.framework */,
 				87D84C831B78828B00FEA1CE /* openSiS */,
@@ -1123,7 +1266,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8724AC361C23E6AD0023E11C /* NSDate+convenience.m in Sources */,
+				067282541C19574500A07E58 /* StudentScheduleViewController.m in Sources */,
 				EDAE5AD51BAAB08E0016811A /* CellTableViewCell3.m in Sources */,
+				8724AC371C23E6AD0023E11C /* NSMutableArray+convenience.m in Sources */,
+				06DDF9A21C1ED9510027BDB1 /* UIColor+CL.m in Sources */,
 				87C7B3F01BA9764D0025AD48 /* UIImageView+HighlightedWebCache.m in Sources */,
 				066DF2F71BEB3E7F0027E9E1 /* GeneralController.m in Sources */,
 				8748C9961B79C62500276D9C /* AFURLConnectionOperation.m in Sources */,
@@ -1132,6 +1279,7 @@
 				87DF10601BA8642200366575 /* SBJsonBase.m in Sources */,
 				8748C9911B79C62500276D9C /* AFHTTPRequestOperation.m in Sources */,
 				063EB7FF1BB5266000F90240 /* GradesViewController.m in Sources */,
+				069F3DFA1C18348D008D76FA /* StudentListController.m in Sources */,
 				8748C9941B79C62500276D9C /* AFNetworkReachabilityManager.m in Sources */,
 				87C468AC1BA69D9A00AFA586 /* attendencedetail.m in Sources */,
 				8748C9991B79C62500276D9C /* AFURLSessionManager.m in Sources */,
@@ -1142,13 +1290,17 @@
 				9F861E311BFA82BF00BF168C /* GradesTotalCell.m in Sources */,
 				872668D61B81DF6000D0DD0D /* TeacherDashboardViewController.m in Sources */,
 				87C468B01BA69DF100AFA586 /* CellTableViewCell1.m in Sources */,
+				06DDF9AA1C1ED95E0027BDB1 /* CLWeeklyCalendarView.m in Sources */,
 				066DF2F31BEB3E3F0027E9E1 /* GradebookConfigController.m in Sources */,
+				06DDF9AC1C1ED95E0027BDB1 /* DayTitleLabel.m in Sources */,
+				8724AC391C23E6AD0023E11C /* UIView+convenience.m in Sources */,
 				8748C9981B79C62500276D9C /* AFURLResponseSerialization.m in Sources */,
 				0691C27B1BDF8C3A00BAB7A4 /* AddAssignmentViewController.m in Sources */,
 				06DD1DC61C02F87400CD5012 /* PostfinalgradesController.m in Sources */,
 				87C7B3EA1BA9764D0025AD48 /* SDWebImageManager.m in Sources */,
 				87C7B3F11BA9764D0025AD48 /* UIImageView+WebCache.m in Sources */,
 				06AB2EA71BE74C3A0094DF4D /* EditNewAssignmentViewController.m in Sources */,
+				8724AC3A1C23E6AD0023E11C /* VRGCalendarView.m in Sources */,
 				87CFBA0F1B9D797200B9048C /* reset.m in Sources */,
 				87DF10621BA8642200366575 /* SBJsonWriter.m in Sources */,
 				87D84C8D1B78828B00FEA1CE /* ViewController.m in Sources */,
@@ -1164,6 +1316,7 @@
 				87D62B691B94412500D95879 /* forgotpstaffViewController.m in Sources */,
 				066AA5461B79E0B800C39A48 /* FrogotLoginnPasswordViewController.m in Sources */,
 				063EB8041BB52C5F00F90240 /* AssignmentViewController.m in Sources */,
+				069F3DFE1C1834C0008D76FA /* StudentListCell.m in Sources */,
 				87C7B3E91BA9764D0025AD48 /* SDWebImageDownloaderOperation.m in Sources */,
 				8748C9921B79C62500276D9C /* AFHTTPRequestOperationManager.m in Sources */,
 				063EB7FD1BB5266000F90240 /* GradeBookTableViewCell.m in Sources */,
@@ -1175,10 +1328,14 @@
 				066AA5511B79F91800C39A48 /* ForgotusernameViewController.m in Sources */,
 				06A69FB21BE0DCCF00570D33 /* ClassWorkCell.m in Sources */,
 				87D9817B1BE3AA2600DCD8A6 /* AddnewAssignmentViewController.m in Sources */,
+				06DDF9A01C1ED9510027BDB1 /* NSDate+CL.m in Sources */,
 				87C7B3EF1BA9764D0025AD48 /* UIImage+WebP.m in Sources */,
+				8724AC381C23E6AD0023E11C /* UIColor+expanded.m in Sources */,
 				87C7B3E81BA9764D0025AD48 /* SDWebImageDownloader.m in Sources */,
 				87DF105F1BA8642200366575 /* SBJSON.m in Sources */,
 				ED14DEB31B8E29D600BA698A /* UIImageView+PhotoFrame.m in Sources */,
+				06DDF9AB1C1ED95E0027BDB1 /* DailyCalendarView.m in Sources */,
+				06DDF9B31C1EE7620027BDB1 /* WeekViewCell.m in Sources */,
 				06B2FF771B9D676B0000611D /* ForgotpparentViewController.m in Sources */,
 				87C7B3EE1BA9764D0025AD48 /* UIImage+MultiFormat.m in Sources */,
 				87C7B3E71BA9764D0025AD48 /* SDWebImageDecoder.m in Sources */,
@@ -1187,8 +1344,10 @@
 				87D84C8A1B78828B00FEA1CE /* AppDelegate.m in Sources */,
 				87D84C871B78828B00FEA1CE /* main.m in Sources */,
 				0669713D1C10317C009D7BBD /* StudentScheduleController.m in Sources */,
+				06DDF9AF1C1EE7330027BDB1 /* WeekViewController.m in Sources */,
 				87C7B3EC1BA9764D0025AD48 /* UIButton+WebCache.m in Sources */,
 				87DF10611BA8642200366575 /* SBJsonParser.m in Sources */,
+				06DDF9A11C1ED9510027BDB1 /* NSDictionary+CL.m in Sources */,
 				87C7B3EB1BA9764D0025AD48 /* SDWebImagePrefetcher.m in Sources */,
 				87C7B3F21BA9764D0025AD48 /* UIView+WebCacheOperation.m in Sources */,
 				8748C99C1B79C70C00276D9C /* ip_url.m in Sources */,
@@ -1196,11 +1355,14 @@
 				8748C9931B79C62500276D9C /* AFHTTPSessionManager.m in Sources */,
 				87D37B6C1BA009870026F485 /* attendence.m in Sources */,
 				87C7B3ED1BA9764D0025AD48 /* UIImage+GIF.m in Sources */,
+				067282511C19572800A07E58 /* StudentScheduleViewCell.m in Sources */,
+				8724AC2B1C23E68D0023E11C /* MonthViewController.m in Sources */,
 				87C7A2691B9B0D69000D60B6 /* forgotstaffViewController.m in Sources */,
 				87DF105E1BA8642200366575 /* NSString+SBJSON.m in Sources */,
 				EDAE5AD41BAAB08E0016811A /* takeattendance.m in Sources */,
 				87C7B3E61BA9764D0025AD48 /* SDWebImageCompat.m in Sources */,
 				87C7B3E51BA9764D0025AD48 /* SDImageCache.m in Sources */,
+				06DDF9A31C1ED9510027BDB1 /* UIImage+CL.m in Sources */,
 				066971461C1045D7009D7BBD /* CellTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

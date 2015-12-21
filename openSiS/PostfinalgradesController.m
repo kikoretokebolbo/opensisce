@@ -40,12 +40,14 @@
 @property (strong, nonatomic) IBOutlet UIView *view_greyunderbluetop;
 @property (strong, nonatomic) IBOutlet UIView *view_gery_sub1;
 @property (strong, nonatomic) IBOutlet UIView *view_grey_sub2;
+@property (strong, nonatomic) IBOutlet UIView *view_new_mpid;
 
 - (IBAction)action_click:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextField *text_totals;
 @property (strong, nonatomic) IBOutlet UITableView *tablev;
 @property (strong, nonatomic) IBOutlet UIView *view_inactiveswitch;
 @property (strong, nonatomic) IBOutlet UISwitch *switch_inactive_students, *switch_fetch_gradebook, *switch_fetch_grade, *switch_fetch_comment;
+@property (strong, nonatomic) IBOutlet UITextField *text_new_mpid;
 - (IBAction)action_switch_inactive:(id)sender;
 - (IBAction)action_assignletters:(id)sender;
 - (IBAction)action_assignpercents:(id)sender;
@@ -79,9 +81,9 @@
     SlideViewController *slide;
     int  flag,k,change,incdecheight,scroller;
     float z;
-    NSMutableArray *array_reportcardgrades, *array_studentgrades,*course_period_ary,*course_period_title,*course_period_id;
-    NSString *str_reportcardgrades_id, *courseperiodnamestr;
-    UIPickerView *selectcustomerpicker;
+    NSMutableArray *array_reportcardgrades, *array_studentgrades,*course_period_ary,*course_period_title,*course_period_id, *array_newcourseperiod;
+    NSString *str_reportcardgrades_id, *courseperiodnamestr, *str_previously_selected_mpid, *str_currently_Selected_new_mpid;
+    UIPickerView *selectcustomerpicker, *picker_newmp;
     NSInteger selectedindexpath;
     NSMutableDictionary *dicto,*dic_techinfo;
     NSInteger fetchtag;
@@ -90,24 +92,18 @@
 -(void)loadata1
 {
     
-    
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-    
     NSString *cpv_id1=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"UserCoursePeriodVar"]];
     NSUserDefaults *DF=[NSUserDefaults standardUserDefaults];
     NSString *STAFF_ID_K=[DF objectForKey:@"iphone"];
     
-    
     NSString *mp_id=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"UserMP"]];
-    
     
     NSString *school_id=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"SCHOOL_ID"]];
     NSString *year_id=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"SYEAR"]];
     
     ip_url *obj123=[[ip_url alloc]init];
     NSString *str123=[obj123 ipurl];
-    
     
     NSString*str_checklogin=[NSString stringWithFormat:@"/post_final_grades.php?school_id=%@&syear=%@&staff_id=%@&cpv_id=%@&mp_id=%@&include_inactive=%@",school_id,year_id,STAFF_ID_K,cpv_id1,mp_id,str_s];
     NSLog(@"kkkkkkkkkkk%@",str_checklogin);
@@ -116,7 +112,6 @@
     NSLog(@"----%@",url12);
     NSURL *url = [NSURL URLWithString:url12];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
     
     // 2
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -129,9 +124,8 @@
         NSLog(@"value is-------%@",dictionary1);
         array_reportcardgrades = [[[NSMutableArray alloc]init]mutableCopy];
         array_studentgrades = [[[NSMutableArray alloc]init]mutableCopy];
+        array_newcourseperiod = [[[NSMutableArray alloc]init]mutableCopy];
          NSString *successStr = [NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"success"]];
-        
-        
         
          if ([successStr isEqualToString:@"1"]) {
               [self.label_nodataFound setHidden:YES];
@@ -140,11 +134,12 @@
         array_reportcardgrades = [dictionary1 objectForKey:@"report_card_grades"];
         dicto = [[NSMutableDictionary alloc]init];
         dicto = [dictionary1 objectForKey:@"previous_mp_data"];
-
-        
+        array_newcourseperiod = [dictionary1 objectForKey:@"mps_dd_data"];
+             str_previously_selected_mpid = [dictionary1 objectForKey:@"dd_selected_mp"];
 
         [self.tablev reloadData];
         [pick12 reloadAllComponents];
+             [picker_newmp reloadAllComponents];
          }
         else
         {
@@ -153,7 +148,6 @@
         }
         
         // student_grades
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -177,6 +171,92 @@
     
     
 }
+-(void)loadata2
+{
+    
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSString *cpv_id1=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"UserCoursePeriodVar"]];
+    NSUserDefaults *DF=[NSUserDefaults standardUserDefaults];
+    NSString *STAFF_ID_K=[DF objectForKey:@"iphone"];
+    
+    NSString *mp_id=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"UserMP"]];
+    
+    NSString *school_id=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"SCHOOL_ID"]];
+    NSString *year_id=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"SYEAR"]];
+    
+    ip_url *obj123=[[ip_url alloc]init];
+    NSString *str123=[obj123 ipurl];
+    
+    
+    // http://107.170.94.176/openSIS_CE6_Mobile/webservice/post_final_grades.php?school_id=3&syear=2015&staff_id=18&cpv_id=40&mp=36&include_inactive=Y&mp_id=31
+    
+    NSString*str_checklogin=[NSString stringWithFormat:@"/post_final_grades.php?school_id=%@&syear=%@&staff_id=%@&cpv_id=%@&mp_id=%@&include_inactive=%@&mp_id=%@",school_id,year_id,STAFF_ID_K,cpv_id1,mp_id,str_s,str_currently_Selected_new_mpid];
+    NSLog(@"kkkkkkkkkkk%@",str_checklogin);
+    NSString *url12=[NSString stringWithFormat:@"%@%@",str123,str_checklogin];
+    
+    NSLog(@"----%@",url12);
+    NSURL *url = [NSURL URLWithString:url12];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    // 2
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"]; // Add korlam bcoz sob content type support korena
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSMutableDictionary *  dictionary1=[[NSMutableDictionary alloc]init];
+        dictionary1 = (NSMutableDictionary *)responseObject;
+        NSLog(@"value is-------%@",dictionary1);
+        array_reportcardgrades = [[[NSMutableArray alloc]init]mutableCopy];
+        array_studentgrades = [[[NSMutableArray alloc]init]mutableCopy];
+        array_newcourseperiod = [[[NSMutableArray alloc]init]mutableCopy];
+        NSString *successStr = [NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"success"]];
+        
+        if ([successStr isEqualToString:@"1"]) {
+            [self.label_nodataFound setHidden:YES];
+            [self.tablev setHidden:NO];
+            array_studentgrades = [dictionary1 objectForKey:@"student_grades"];
+            array_reportcardgrades = [dictionary1 objectForKey:@"report_card_grades"];
+            dicto = [[NSMutableDictionary alloc]init];
+            dicto = [dictionary1 objectForKey:@"previous_mp_data"];
+            array_newcourseperiod = [dictionary1 objectForKey:@"mps_dd_data"];
+            str_previously_selected_mpid = [dictionary1 objectForKey:@"dd_selected_mp"];
+            
+            [self.tablev reloadData];
+            [pick12 reloadAllComponents];
+            [picker_newmp reloadAllComponents];
+        }
+        else
+        {
+            [self.tablev setHidden:YES];
+            [self.label_nodataFound setHidden:NO];
+        }
+        
+        // student_grades
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        
+        
+    }];
+    
+    
+    [operation start];
+    
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
 #pragma mark-------Getdata
 -(NSString *)getCourseperiodtextfielddata
 {
@@ -212,6 +292,24 @@
     
     
 }
+-(void)loaddata2
+{
+    
+    
+    str_s=@"N";
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //[MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self performSelector:@selector(loadata2) withObject:nil afterDelay:1];
+        });
+    });
+    
+    
+    
+}
+
 
 
 - (void)viewDidLoad {
@@ -252,11 +350,24 @@
     
     [self dodesign];
     [self pickerfortop];
+    [self pickerfornewmp];
     flag_main = 0;
     self.view_commentBackground.hidden = YES;
     [self.view_fetchBackground setHidden:YES];
     [self dataforcpn];
+    
     [self.label_nodataFound setHidden:YES];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.text_new_mpid.text = @"Not Provided";
+    for (int i = 0; i < array_newcourseperiod.count; ++i) {
+        NSString *str_i = (NSString *)[[array_newcourseperiod objectAtIndex:i] objectForKey:@"id"];
+        if ([str_i isEqualToString:str_previously_selected_mpid]) {
+            self.text_new_mpid.text = (NSString *)[[array_newcourseperiod objectAtIndex:i] objectForKey:@"value"];
+            break;
+        }
+    }
 }
 
 - (void) dataforcpn
@@ -326,6 +437,11 @@
     _view_total.clipsToBounds = YES;
     [_view_total.layer setBorderWidth:1.0f];
     _view_total.layer.borderColor = [[UIColor colorWithRed:0.200f green:0.600f blue:0.851f alpha:1.00f]CGColor];
+    
+    [_view_new_mpid.layer setCornerRadius:1.0f];
+    _view_new_mpid.clipsToBounds = YES;
+    [_view_new_mpid.layer setBorderWidth:1.0f];
+    _view_new_mpid.layer.borderColor = [[UIColor colorWithRed:0.200f green:0.600f blue:0.851f alpha:1.00f]CGColor];
     
     [_view_gery_sub1.layer setCornerRadius:2.0f];
     _view_gery_sub1.clipsToBounds = YES;
@@ -984,17 +1100,72 @@
     
     
 }
+
+-(void)pickerfornewmp
+{
+    
+    picker_newmp = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    
+    picker_newmp .delegate = self;
+    
+    picker_newmp .dataSource = self;
+    picker_newmp.tag = 2;
+    
+    [ picker_newmp  setShowsSelectionIndicator:YES];
+    //selectcustomerpicker.tag=60;
+    self.text_new_mpid.inputView = picker_newmp;
+    
+    UIToolbar*  mypickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 56)];
+    
+    mypickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    
+    [mypickerToolbar sizeToFit];
+    
+    
+    
+    NSMutableArray *barItems = [[NSMutableArray alloc] init];
+    
+    
+    
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    [barItems addObject:flexSpace];
+    
+    
+    
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pickerDoneClicked1:)];
+    doneBtn.tag = 22;
+    [barItems addObject:doneBtn];
+    
+    
+    
+    [mypickerToolbar setItems:barItems animated:YES];
+    
+    
+    
+    self.text_new_mpid.inputAccessoryView = mypickerToolbar;
+    
+    
+    
+}
+
+
 -(IBAction)pickerDoneClicked1:(UIBarButtonItem *)sender
 
 {
     NSLog(@"Done Clicked");
     [self.text_totals resignFirstResponder];
+    [self.text_new_mpid resignFirstResponder];
+    
     view1236.hidden = YES;
     //[view1236 removeFromSuperview];
     if (sender.tag == 11) {
         [self loaddata];
     }
     
+    if (sender.tag == 22) {
+       [self loaddata2] ;
+    }
     
     
     
@@ -1016,10 +1187,13 @@
     if (pickerView.tag ==500) {
         
         return array_reportcardgrades.count;
-    };
+    }
     
     if (pickerView.tag == 1) {
         return course_period_title.count;
+    }
+    if (pickerView.tag == 2) {
+        return array_newcourseperiod.count;
     }
     return 0;
 }
@@ -1034,6 +1208,9 @@
     }
     if (pickerView.tag == 1) {
         return [course_period_title objectAtIndex:row];
+    }
+    if (pickerView.tag == 2) {
+        return [[array_newcourseperiod objectAtIndex:row] objectForKey:@"value"];
     }
     
     return nil;
@@ -1076,6 +1253,10 @@
         [dic setObject:strC1 forKey:@"UserCoursePeriodVar"];
         appDelegate.dic = [dic mutableCopy];
         
+    }
+    if (pickerView.tag == 2) {
+        self.text_new_mpid.text = (NSString*)[[array_newcourseperiod objectAtIndex:row] objectForKey:@"value"];
+        str_currently_Selected_new_mpid = (NSString *)[[array_newcourseperiod objectAtIndex:row] objectForKey:@"id"];
     }
     
 }
