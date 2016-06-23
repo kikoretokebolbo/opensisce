@@ -13,7 +13,11 @@
 #import "AppDelegate.h"
 #import "ip_url.h"
 #import "AFNetworking.h"
-
+#import "SettingsMenu.h"
+#import "Month1ViewController.h"
+#import "SettingsMenu.h"
+#import "msg1.h"
+#import "TeacherDashboardViewController.h"
 @interface StudentScheduleController ()<UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *text_lastname, *text_firstname, *text_studentid, *text_altid, *text_streetaddress, *text_city, *text_state, *text_postcode, *text_grade, *text_activity;
@@ -52,6 +56,19 @@
     [self loaddata];
     [self loadPicker1];
     [self loadPicker2];
+}
+#pragma mark---Settings
+
+-(IBAction)settings:(id)sender
+{
+    
+    
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Settings" bundle:nil];
+    SettingsMenu *obj = [sb instantiateViewControllerWithIdentifier:@"SettingsMenu"];
+    
+    
+    [self.navigationController pushViewController:obj animated:YES];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -149,6 +166,25 @@
     disview.clipsToBounds = YES;
 }
 
+-(IBAction)thirdButton:(id)sender
+{
+    NSLog(@"Third Button");
+}
+
+#pragma mark---Msg
+-(IBAction)msg:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"msg" bundle:nil];
+    msg1*obj = [sb instantiateViewControllerWithIdentifier:@"msg1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+#pragma mark -- calendar
+-(IBAction)calendar:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"schoolinfo"bundle:nil];
+    Month1ViewController *obj = [sb instantiateViewControllerWithIdentifier:@"month1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
 
 
 
@@ -256,7 +292,7 @@
     assc = [sb instantiateViewControllerWithIdentifier:@"studentscheduleadvanced"];
     assc.senderString = [self gettheString];
     
-    
+    NSLog(@"the parameter string Simple Search: %@", [self gettheString]);
     [self.navigationController pushViewController:assc animated:YES];
 }
 

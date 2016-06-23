@@ -4,7 +4,6 @@
 @protocol DailyCalendarViewDelegate <NSObject>
 -(void)dailyCalendarViewDidSelect: (NSDate *)date;
 
-
 @end
 @interface DailyCalendarView : UIView
 @property (nonatomic, weak) id<DailyCalendarViewDelegate> delegate;

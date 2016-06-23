@@ -20,6 +20,10 @@
 #import "PostfinalgradesController.h"
 #import "ScheduleHomeController.h"
 #import "attendetail.h"
+#import "msg1.h"
+#import "MessageGroupController.h"
+#import "CourseManagerSubject.h"
+#import "mp.h"
 
 @interface SlideViewController ()
 
@@ -35,10 +39,12 @@
     PostfinalgradesController *superpostfinalgradesobject;
     ScheduleHomeController *superschedulehomeobject;
     attendetail *superattendetailobject;
-    
-    
+    msg1 *supermsg1object;
+    MessageGroupController *supermessagegroupobject;
+    CourseManagerSubject *supercoursemanagersubjectobject;
+    mp *supermp_period;
     NSMutableDictionary *dic,*dic_techinfo;
-    
+
     
     NSString *term123,*sub1234;
     attendence *atd;
@@ -74,6 +80,7 @@
 
 
 @synthesize  school_id,school_year1,str_term1,str_sub1,str_cou1,str_cp1,term,currentSchool,schoolYear,subject,course,coursePeriod,img_profile;
+
 -(void)courseperiodname
 {
     
@@ -170,6 +177,32 @@
     {
         superattendetailobject = [[attendetail alloc]init];
         superattendetailobject = parent;
+    }
+    else if ([thisparentName isEqualToString:@"msg1"])
+    {
+        supermsg1object = [[msg1 alloc]init];
+        supermsg1object = parent;
+        
+    }
+    else if ([thisparentName isEqualToString:@"msggroup"])
+    {
+        supermessagegroupobject = [[MessageGroupController alloc]init];
+        supermessagegroupobject = parent;
+        
+    }
+    else if ([thisparentName isEqualToString:@"coursemanager"])
+    {
+        supercoursemanagersubjectobject = [[CourseManagerSubject alloc]init];
+        supercoursemanagersubjectobject = parent;
+        
+    }
+
+    
+    else if ([thisparentName isEqualToString:@"mpperiod"])
+    {
+       supermp_period= [[mp alloc]init];
+       supermp_period= parent;
+        
     }
 
 
@@ -790,6 +823,41 @@
    
 
     [self setcourseperiod];
+    [self setschoolname];
+}
+- (void)setschoolname
+{
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSMutableArray * course_period_title_2,* course_period_id_2;
+    if (appDelegate.dic) {
+        
+        NSMutableArray * course_temp_arr = [[NSMutableArray alloc]init];
+        course_temp_arr = [[appDelegate.dic objectForKey:@"course_period_list"]mutableCopy];
+        
+        if ([course_temp_arr count]>0) {
+            course_period_title_2= [[NSMutableArray alloc] init];
+            course_period_id_2 = [[NSMutableArray alloc] init];
+            for (int i = 0; i<[course_temp_arr count]; i++) {
+                NSDictionary *dic15 = [course_temp_arr objectAtIndex:i];
+                [course_period_title_2  addObject:[dic15 objectForKey:@"title"]];
+                [course_period_id_2 addObject:[dic15 objectForKey:@"cpv_id"]];
+            }
+            
+            NSLog(@"222222222222222 %@",course_period_title);
+            //[selectcustomerpicker reloadAllComponents];
+            
+        }
+        else {
+            NSLog(@"No  list");
+        }
+        
+        NSString *cpv_id1=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"UserCoursePeriodVar"]];
+        NSInteger indexofcpv = [course_period_id_2 indexOfObject:cpv_id1];
+        //[self setCourseperiodtextfielddata:[NSString stringWithFormat:@"%@",[course_period_title objectAtIndex:indexofcpv]]];
+        coursePeriod.text = [NSString stringWithFormat:@"%@",[course_period_title_2 objectAtIndex:indexofcpv]];
+        
+    }
+    
 }
 
 
@@ -974,7 +1042,7 @@
         
         else
         {
-            NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
+           // NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
             
        //     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Alert" message:str_msg delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
          //   [alert show];
@@ -1011,8 +1079,7 @@
     
     
 }
-
-
+#pragma mark-marking period term
 -(void)dropdowndatayear
 {
  //  NSString *marking_period_type=[NSString stringWithFormat:@"%@",[dic objectForKey:@"marking_period_type"]];
@@ -1160,7 +1227,7 @@ school_id1,school_year12,staff_id_d];
         
         else
         {
-            NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
+           // NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
             
          //   UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Alert" message:str_msg delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
          //   [alert show];
@@ -1366,7 +1433,7 @@ school_id1,school_year12,staff_id_d];
         
         else
         {
-            NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
+          //  NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
             
           //  UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Alert" message:str_msg delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
           //  [alert show];
@@ -1547,7 +1614,7 @@ school_id1,school_year12,staff_id_d];
         
         else
         {
-            NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
+           // NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
             
          //   UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Alert" message:str_msg delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
          //   [alert show];
@@ -1745,7 +1812,7 @@ school_id1,school_year12,staff_id_d];
         
         else
         {
-            NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
+           // NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
             
          //   UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Alert" message:str_msg delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
          //   [alert show];
@@ -2074,7 +2141,7 @@ school_id1,school_year12,staff_id_d];
             
             else
             {
-                NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
+             //   NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
                 
              //   UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Alert" message:str_msg delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
               //  [alert show];
@@ -2128,6 +2195,15 @@ school_id1,school_year12,staff_id_d];
     if ([thisparentName isEqualToString:@"postfinalgrades"])  {
         coursePeriod.text = [superpostfinalgradesobject getCourseperiodtextfielddata];
     }
+    if ([thisparentName isEqualToString:@"coursemanager"])  {
+        coursePeriod.text = [supercoursemanagersubjectobject getCourseperiodtextfielddata];
+        
+    }
+    if ([thisparentName isEqualToString:@"mpperiod"])  {
+      currentSchool.text = [supermp_period getCourseperiodtextfielddata];
+        
+    }
+    
       ///////getdata
     view_inactive = [[UIView alloc]initWithFrame:_superV.frame];
     
@@ -2167,9 +2243,27 @@ school_id1,school_year12,staff_id_d];
         [superassignmentobject callgetdata];
          [superassignmentobject tablereload];
     }
-    [superteacherdashobject setCourseperiodtextfielddata:[NSString stringWithFormat:@"%@", coursePeriod.text]];//setdata
-    [self setcourseperiodofparent];
-    [superpostfinalgradesobject loaddata];
+    if ([thisparentName isEqualToString:@"coursemanager"])  {
+        [supercoursemanagersubjectobject accessingtheAppDelegateDictionary];
+        
+    }
+    
+    if ([thisparentName isEqualToString:@"teacherdashboard"]) {
+        [superteacherdashobject setCourseperiodtextfielddata:[NSString stringWithFormat:@"%@", coursePeriod.text]];//setdata
+    }
+    if ([thisparentName isEqualToString:@"mpperiod"])  {
+        
+        
+        NSString *str_c=[NSString stringWithFormat:@"%@", currentSchool.text];
+        NSLog(@"-----------------%@",str_c);
+        [supermp_period setCourseperiodtextfielddata:[NSString stringWithFormat:@"%@", str_c]];//setdata
+        
+    }
+
+    
+  
+   // [self setcourseperiodofparent];
+  //  [superpostfinalgradesobject loaddata];
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -2948,8 +3042,18 @@ school_id1,school_year12,staff_id_d];
     {
         [superattendetailobject.navigationController popToRootViewControllerAnimated:YES];
     }
-
-
+    else if (supermsg1object)
+    {
+        [supermsg1object.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else if (supermessagegroupobject)
+    {
+        [supermessagegroupobject.navigationController popToRootViewControllerAnimated:YES];
+    }
+    else if (supermp_period)
+    {
+        [supermp_period.navigationController popToRootViewControllerAnimated:YES];
+    }
 
     
 }

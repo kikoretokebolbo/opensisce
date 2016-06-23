@@ -24,7 +24,10 @@
 #import "StudentScheduleViewController.h"
 #import "CLWeeklyCalendarView.h"
 #import "MonthViewController.h"
-
+#import "Month1ViewController.h"
+#import "SettingsMenu.h"
+#import "msg1.h"
+#import "TeacherDashboardViewController.h"
 @interface MonthViewController ()<CLWeeklyCalendarViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,VRGCalendarViewDelegate>
 
 {
@@ -251,6 +254,7 @@
 {
     
     self.view_blackDate.hidden = YES;
+    label_titleforthisPage.text = [NSString stringWithFormat:@"Schedule: %@",self.studentName];
 }
 
 
@@ -384,6 +388,34 @@
     [self.navigationController pushViewController:vc animated:NO];
     
 }
+
+-(IBAction)thirdButton:(id)sender
+{
+    NSLog(@"Third Button");
+}
+
+#pragma mark---Msg
+-(IBAction)msg:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"msg" bundle:nil];
+    msg1*obj = [sb instantiateViewControllerWithIdentifier:@"msg1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+#pragma mark—Settings
+-(IBAction)settings:(id)sender{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Settings"bundle:nil];
+    SettingsMenu *obj = [sb instantiateViewControllerWithIdentifier:@"SettingsMenu"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+
+#pragma mark -- calendar
+-(IBAction)calendar:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"schoolinfo"bundle:nil];
+    Month1ViewController *obj = [sb instantiateViewControllerWithIdentifier:@"month1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -573,7 +605,7 @@
 {
     [self.text_mon_day_yr resignFirstResponder];
     self.view_blackDate.hidden = YES;
-    // UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
     if ([self.text_mon_day_yr.text isEqualToString:@"Week"]) {
         //        StudentScheduleViewController *wv = [[StudentScheduleViewController alloc]init];
@@ -583,6 +615,15 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
     
+    if ([self.text_mon_day_yr.text isEqualToString:@"Date"]) {
+                StudentScheduleViewController *wv = [[StudentScheduleViewController alloc]init];
+               wv = [sb instantiateViewControllerWithIdentifier:@"studentscheduleview"];
+               wv.studentID = self.studentID;
+        wv.studentName = self.studentName;
+               [self.navigationController pushViewController:wv animated:YES];
+        
+    }
+
     
 }
 

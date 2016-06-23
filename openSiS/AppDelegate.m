@@ -13,12 +13,13 @@
 @end
 
 @implementation AppDelegate
-@synthesize dic,dic_techinfo,cp_value,dic_term,dic_course,dic_sub,dic_year,dic_school;
+@synthesize dic,dic_techinfo,cp_value,dic_term,dic_course,dic_sub,dic_year,dic_school,str_txt_url;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [application setStatusBarHidden:YES];
     
-   
+    NSLog(@"Documents folder: %@",[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject]);
+
     // Override point for customization after application launch.
     return YES;
 }

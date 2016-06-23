@@ -14,9 +14,9 @@
 
 @property(strong,nonatomic)NSMutableDictionary *dic,*dic_techinfo,*dic_term,*dic_year,*dic_sub,*dic_course,*dic_school;
 
-@property(strong,nonatomic)NSMutableArray *cp_value;
+@property(strong,nonatomic)NSMutableArray *cp_value,*dateary,*statecodeary;
 @property(strong,nonatomic)ViewController *viewController;
 @property(strong,nonatomic)UINavigationController *navigation;
-
+@property(strong,nonatomic)NSString *str_txt_url;
 @end
 

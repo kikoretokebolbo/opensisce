@@ -12,9 +12,10 @@
 {
     IBOutlet UILabel *label_nodata;
     IBOutlet UIView *view1;
+    IBOutlet UILabel *label_titleforthisPage;
     NSString *date_value;
 }
-
+@property (strong) NSString *studentName;
 @property (strong) NSString *studentID;
 
 @end

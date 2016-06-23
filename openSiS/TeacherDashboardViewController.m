@@ -13,12 +13,16 @@
 #import "attendence.h"
 #import "GradesViewController.h"
 #import "AFNetworking.h"
-
+#import "schoolinfo.h"
 #import "ip_url.h"
 #import "MBProgressHUD.h"
 #import "ScheduleHomeController.h"
-
-
+#import "msg1.h"
+#import "SettingsMenu.h"
+#import "Month1ViewController.h"
+#import "stdsearch.h"
+#import "SettingsMenu.h"
+#import "AppDelegate.h"
 @interface TeacherDashboardViewController ()
 {
     SlideViewController *slide;
@@ -33,6 +37,23 @@
 @synthesize dic,img_profile,profile;
 
 @synthesize  school_id,school_year1,str_term1,str_sub1,str_cou1,str_cp1,dic_techinfo;
+
+
+#pragma mark---Settings
+
+-(IBAction)settings:(id)sender
+{
+    
+    
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Settings" bundle:nil];
+    SettingsMenu *obj = [sb instantiateViewControllerWithIdentifier:@"SettingsMenu"];
+    
+    
+    [self.navigationController pushViewController:obj animated:YES];
+    
+}
+
+
 #pragma mark-------Getdata
 -(NSString *)getCourseperiodtextfielddata
 {
@@ -305,12 +326,12 @@
         if([str_123 isEqualToString:@"1"])
         {
             
-          
+          AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             
          //   NSLog(@"uuuuuu====%@",dic_techinfo);
-            lbl_hidden.text=[NSString stringWithFormat:@"%@",[dic_techinfo objectForKey:@"missing_attendance_count"]];
-            notofi.text=[NSString stringWithFormat:@"%@",[dic_techinfo objectForKey:@"notification_count"]];
-            NSString *str_count=[NSString stringWithFormat:@"%@",[dic_techinfo objectForKey:@"message_count"]];
+            lbl_hidden.text=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"missing_attendance_count"]];
+            notofi.text=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"notification_count"]];
+            NSString *str_count=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"message_count"]];
             if ([str_count isEqualToString:@"0"]) {
                 msg_count_tab.hidden=YES;
                 msg_count.hidden=YES;
@@ -320,28 +341,10 @@
                 msg_count_tab.hidden=NO;
                 msg_count.hidden=NO;
                 
-                msg_count_tab.text=[NSString stringWithFormat:@"%@",[dic_techinfo objectForKey:@"message_count"]];
-                msg_count.text=[NSString stringWithFormat:@"%@",[dic_techinfo objectForKey:@"message_count"]];
+                msg_count_tab.text=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"message_count"]];
+                msg_count.text=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"message_count"]];
             }
-            // NSLog(@"lbl___---%@",lbl_hidden.text);
-            lbl_lvlview_drop.text =[NSString stringWithFormat:@"You have %@ mising attendence",[dic_techinfo objectForKey:@"missing_attendance_count"]];
-            
-            
-            NSUserDefaults *ox=[NSUserDefaults standardUserDefaults];
-            profile=[ox objectForKey:@"profile"];
-            // ip_url *obj=[[ip_url alloc]init];
-            // NSString  *ip=[obj ipurl];
-            //  NSLog(@"%@",ip);
-            NSMutableArray *INFO1=[[NSMutableArray alloc]init];
-            INFO1=[dic_techinfo objectForKey:@"tech_info"];
-            
-            NSString *staff_id_value=[NSString stringWithFormat:@"%@",[[INFO1 objectAtIndex:0]objectForKey:@"STAFF_ID" ]];
-            
-            NSUserDefaults *df=[NSUserDefaults standardUserDefaults];
-            
-            [df setValue:staff_id_value forKey:@"iphone"];
-            
-        }
+                   }
         
         
         else
@@ -463,11 +466,6 @@
 
 -(void)courseperiod123{
     
-  
-    
-    
-    
-    
     selectcustomerpicker = [[UIPickerView alloc] initWithFrame:CGRectZero];
     
     selectcustomerpicker  .delegate = self;
@@ -517,14 +515,10 @@
 
 -(void)labelborderset:(UILabel*)lbl1
 {
-
     lbl1.layer.borderWidth=4.0f;
     lbl1.layer.borderColor=[UIColor clearColor].CGColor;
     lbl1.layer.cornerRadius=2.0f;
-    
     lbl1.clipsToBounds=YES;
-
-
 }
 
 -(void)alldata
@@ -561,8 +555,9 @@
     NSString *strt_c=[NSString stringWithFormat:@"%@",[dic objectForKey:@"UserCoursePeriod"]];
     
     
-    NSLog(@"course ary----%@",course_period_ary);
-    for (int i=0; i<[course_period_ary count]; i++) {
+   // NSLog(@"course ary----%@",course_period_ary);
+    if ([course_period_ary count] > 0) {
+          for (int i=0; i<[course_period_ary count]; i++) {
         
         
         if ([strt_c isEqual:[[course_period_ary objectAtIndex:i]objectForKey:@"cp_id"]]) {
@@ -582,6 +577,12 @@
         }
         
     }
+    }
+    else
+    {
+    
+        NSLog(@"No Data Found");
+    }
     
     if (c_ap==true) {
         coursePeriod.text=[NSString stringWithFormat:@"%@",[dic177 objectForKey:@"title"]];
@@ -593,9 +594,9 @@
     {
         
         
-        coursePeriod.text=[NSString stringWithFormat:@"%@",[[course_period_ary objectAtIndex:0]objectForKey:@"title"]];
-        courseperiodName.text=[NSString stringWithFormat:@"%@",[[course_period_ary objectAtIndex:0]objectForKey:@"title"]];
-        str_cp1=[NSString stringWithFormat:@"%@",[[course_period_ary objectAtIndex:0]objectForKey:@"cpv_id"]];
+       // coursePeriod.text=[NSString stringWithFormat:@"%@",[[course_period_ary objectAtIndex:0]objectForKey:@"title"]];
+       // courseperiodName.text=[NSString stringWithFormat:@"%@",[[course_period_ary objectAtIndex:0]objectForKey:@"title"]];
+      //  str_cp1=[NSString stringWithFormat:@"%@",[[course_period_ary objectAtIndex:0]objectForKey:@"cpv_id"]];
         
         
     }
@@ -944,20 +945,58 @@ else if (pickerView.tag==60)
         
         
     }
+    
+    else if([str_data isEqualToString:@"My Students"])
+    {
+        UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Student" bundle:nil];
+        stdsearch *obj = [sb instantiateViewControllerWithIdentifier:@"stdsearch"];
+        
+        
+        [self.navigationController pushViewController:obj animated:YES];
+        
+        
+    }
 
+
+    else
+    {
+        
+        UIStoryboard *sb=[UIStoryboard storyboardWithName:@"schoolinfo" bundle:nil];
+        schoolinfo *obj = [sb instantiateViewControllerWithIdentifier:@"sinfo"];
+        
+        
+        [self.navigationController pushViewController:obj animated:YES];
+        
+        
+        
+    }
 
     
 }
 
+#pragma mark---Msg
+-(IBAction)msg:(id)sender
+{
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"msg" bundle:nil];
+        msg1*obj = [sb instantiateViewControllerWithIdentifier:@"msg1"];
+    
+    
+    [self.navigationController pushViewController:obj animated:YES];
+
 }
-*/
+#pragma mark---Settings
+
+
+#pragma mark -- clendar
+-(IBAction)calendar:(id)sender
+{
+
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"schoolinfo" bundle:nil];
+    Month1ViewController *obj = [sb instantiateViewControllerWithIdentifier:@"month1"];
+    [self.navigationController pushViewController:obj animated:YES];
+
+}
 
 @end

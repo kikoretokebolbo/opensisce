@@ -16,7 +16,10 @@
 #import "NSObject+SBJSON.h"
 #import "MBProgressHUD.h"
 #import "ip_url.h"
-
+#import "Month1ViewController.h"
+#import "SettingsMenu.h"
+#import "msg1.h"
+#import "TeacherDashboardViewController.h"
 
 @interface PostfinalgradesController ()
 <UITableViewDataSource,UIPickerViewDataSource,UIPickerViewDelegate>
@@ -104,8 +107,9 @@
     
     ip_url *obj123=[[ip_url alloc]init];
     NSString *str123=[obj123 ipurl];
+    // http://107.170.94.176/openSIS_CE6_Mobile/webservice/post_final_grades.php?school_id=3&syear=2015&staff_id=18&cpv_id=40&mp=36&include_inactive=Y
     
-    NSString*str_checklogin=[NSString stringWithFormat:@"/post_final_grades.php?school_id=%@&syear=%@&staff_id=%@&cpv_id=%@&mp_id=%@&include_inactive=%@",school_id,year_id,STAFF_ID_K,cpv_id1,mp_id,str_s];
+    NSString*str_checklogin=[NSString stringWithFormat:@"/post_final_grades.php?school_id=%@&syear=%@&staff_id=%@&cpv_id=%@&mp=%@&include_inactive=%@",school_id,year_id,STAFF_ID_K,cpv_id1,mp_id,str_s];
     NSLog(@"kkkkkkkkkkk%@",str_checklogin);
     NSString *url12=[NSString stringWithFormat:@"%@%@",str123,str_checklogin];
     
@@ -190,14 +194,15 @@
     
     // http://107.170.94.176/openSIS_CE6_Mobile/webservice/post_final_grades.php?school_id=3&syear=2015&staff_id=18&cpv_id=40&mp=36&include_inactive=Y&mp_id=31
     
-    NSString*str_checklogin=[NSString stringWithFormat:@"/post_final_grades.php?school_id=%@&syear=%@&staff_id=%@&cpv_id=%@&mp_id=%@&include_inactive=%@&mp_id=%@",school_id,year_id,STAFF_ID_K,cpv_id1,mp_id,str_s,str_currently_Selected_new_mpid];
+    NSString*str_checklogin=[NSString stringWithFormat:@"/post_final_grades.php?school_id=%@&syear=%@&staff_id=%@&cpv_id=%@&mp=%@&include_inactive=%@&mp_id=%@",school_id,year_id,STAFF_ID_K,cpv_id1,mp_id,str_s,str_currently_Selected_new_mpid];
     NSLog(@"kkkkkkkkkkk%@",str_checklogin);
     NSString *url12=[NSString stringWithFormat:@"%@%@",str123,str_checklogin];
-    
+    NSString *urlEncoded = [url12 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
     NSLog(@"----%@",url12);
-    NSURL *url = [NSURL URLWithString:url12];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
+   // NSURL *url = [NSURL URLWithString:url12];
+   // NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest  *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlEncoded]];
     // 2
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -314,6 +319,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.btn_ass_percent.titleLabel setTextColor:[UIColor blackColor]];
     [self loaddata];
     slide = [[SlideViewController alloc]init];
     [slide setrect:self.view];
@@ -360,6 +366,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self.btn_ass_letters setBackgroundColor:[UIColor colorWithRed:0.302f green:0.580f blue:0.306f alpha:1.00f]];
+    [self.btn_ass_percent.titleLabel setTextColor:[UIColor blackColor]];
     self.text_new_mpid.text = @"Not Provided";
     for (int i = 0; i < array_newcourseperiod.count; ++i) {
         NSString *str_i = (NSString *)[[array_newcourseperiod objectAtIndex:i] objectForKey:@"id"];
@@ -368,6 +376,10 @@
             break;
         }
     }
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self.btn_ass_percent.titleLabel setTextColor:[UIColor blackColor]];
 }
 
 - (void) dataforcpn
@@ -964,7 +976,7 @@
     [self.tablev reloadData];
     
     [self.btn_ass_percent setBackgroundColor:[UIColor colorWithRed:0.302f green:0.580f blue:0.306f alpha:1.00f]];
-    [self.btn_ass_percent.titleLabel setTextColor:[UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.00f]];
+    [self.btn_ass_percent.titleLabel setTextColor:[UIColor whiteColor]];
     
     [self.btn_ass_letters setBackgroundColor:[UIColor whiteColor]];
     [self.btn_ass_letters.titleLabel setTextColor:[UIColor darkTextColor]];
@@ -1049,6 +1061,32 @@
     
     
     
+}
+-(IBAction)thirdButton:(id)sender
+{
+    NSLog(@"Third Button");
+}
+
+#pragma mark---Msg
+-(IBAction)msg:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"msg" bundle:nil];
+    msg1*obj = [sb instantiateViewControllerWithIdentifier:@"msg1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+#pragma mark—Settings
+-(IBAction)settings:(id)sender{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Settings"bundle:nil];
+    SettingsMenu *obj = [sb instantiateViewControllerWithIdentifier:@"SettingsMenu"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+
+#pragma mark -- calendar
+-(IBAction)calendar:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"schoolinfo"bundle:nil];
+    Month1ViewController *obj = [sb instantiateViewControllerWithIdentifier:@"month1"];
+    [self.navigationController pushViewController:obj animated:YES];
 }
 
 #pragma mark - picker

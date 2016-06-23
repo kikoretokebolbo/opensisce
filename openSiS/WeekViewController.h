@@ -11,8 +11,9 @@
 @interface WeekViewController : UIViewController
 {
     IBOutlet UILabel *label_nodata;
+    IBOutlet UILabel *label_titleforthisPage;
 }
 
 @property (strong) NSString *studentID;
-
+@property (strong) NSString *studentName;
 @end

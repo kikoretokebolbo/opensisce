@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "LoginViewController.h"
-
+#import "AppDelegate.h"
 #import "ip_url.h"
 @interface ViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *lbl_osisTitle;
@@ -40,9 +40,7 @@
  [btn_submit.layer setCornerRadius:1.2f];
     
     
-        ip_url *obj=[[ip_url alloc]init];
-        ip=[obj ipurl];
-        NSLog(@"%@",ip);
+    
     
     transparentview.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
     
@@ -109,12 +107,47 @@
     
 //    NSURL *url = [NSURL URLWithString:@"ip/check_login.php?url="];
 //    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
     
-    NSString*str_checklogin=[NSString stringWithFormat:@"/check_login.php?url=%@",TXT1.text];
+  NSString *  str23=[NSString stringWithFormat:@"%@",TXT1.text];
+    NSString *u_str;
+    
+    if ([str23 containsString:@"http://"]) {
+        
+        
+        NSString* str =[NSString stringWithFormat:@"%@",TXT1.text];
+        
+        NSRange replaceRange = [str rangeOfString:@"http://"];
+        
+        if (replaceRange.location != NSNotFound){
+            
+         //   NSString* result = [str stringByReplacingCharactersInRange:replaceRange withString:@""];
+        }
+       
+        u_str=[NSString stringWithFormat:@"%@",str];
+        NSLog(@"http dia search korlam");
+        
+    }
+    else
+    {
+        NSLog(@"http dilam na");
+       u_str=[NSString stringWithFormat:@"http://%@",TXT1.text];
+        
+        
+    }
+    
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    appDelegate.str_txt_url=[NSString stringWithFormat:@"%@/webservice",u_str];
+    ip_url *obj=[[ip_url alloc]init];
+    ip=[obj ipurl];
+    NSLog(@"%@",ip);
+    NSLog(@"url1-------%@",appDelegate.str_txt_url);
+  
+    NSString*str_checklogin=[NSString stringWithFormat:@"/check_login.php?url=%@", u_str];
   //  NSLog(@"kkkkkkkkkkk%@",str_checklogin);
     NSString *url1=[NSString stringWithFormat:@"%@%@",ip,str_checklogin];
-  //  NSLog(@"hjjhjg%@",url1);
-      NSURL *url = [NSURL URLWithString:url1];
+    NSLog(@"hjjhjg%@",url1);
+    NSURL *url = [NSURL URLWithString:url1];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
     

@@ -15,6 +15,12 @@
 #import "TeacherDashboardViewController.h"
 #import "attendencedetail.h"
 #import "attendetail.h"
+#import "Month1ViewController.h"
+
+#import "SettingsMenu.h"
+#import "msg1.h"
+#import "TeacherDashboardViewController.h"
+#import "AppDelegate.h"
 @interface attendence()
 @property (strong, nonatomic) IBOutlet UIView *view_currentSchool;
 @property (strong, nonatomic) IBOutlet UIView *view_schoolyear;
@@ -217,12 +223,12 @@
             NSString *str_count=[NSString stringWithFormat:@"%@",[dic_techinfo objectForKey:@"message_count"]];
             if ([str_count isEqualToString:@"0"]) {
                 msg_count_tab.hidden=YES;
-                msg_count.hidden=YES;
+               // msg_count.hidden=YES;
             }
             else
             {
                 msg_count_tab.hidden=NO;
-                msg_count.hidden=NO;
+               // msg_count.hidden=NO;
             }
 
             
@@ -383,24 +389,34 @@
 #pragma mark Tabbar
 -(IBAction)home:(id)sender
 {
-
-   //AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    
-    
-  
-    NSLog(@"dic===========%@",dic);
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
    TeacherDashboardViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"dash"];
-  // vc.dic=dic;
-    vc.dic_techinfo=dic_techinfo;
-    
-   // appDelegate.dic=dic;
- //   appDelegate.dic_techinfo=dic_techinfo;
-    
-    [self.navigationController pushViewController:vc animated:NO];
+  [self.navigationController pushViewController:vc animated:NO];
+}
+-(IBAction)thirdButton:(id)sender
+{
+    NSLog(@"Third Button");
+}
+#pragma mark---Msg
+-(IBAction)msg:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"msg" bundle:nil];
+    msg1*obj = [sb instantiateViewControllerWithIdentifier:@"msg1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+#pragma mark—Settings
+-(IBAction)settings:(id)sender{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Settings"bundle:nil];
+    SettingsMenu *obj = [sb instantiateViewControllerWithIdentifier:@"SettingsMenu"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
 
-
-
+#pragma mark -- calendar
+-(IBAction)calendar:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"schoolinfo"bundle:nil];
+    Month1ViewController *obj = [sb instantiateViewControllerWithIdentifier:@"month1"];
+    [self.navigationController pushViewController:obj animated:YES];
 }
 
 -(IBAction)ok:(id)sender

@@ -22,7 +22,14 @@
 #import "SDWebImage/UIImageView+WebCache.h"
 #import "UIImageView+WebCache.h"
 #import "attendencedetail.h"
+#import "Month1ViewController.h"
+#import "SettingsMenu.h"
+#import "msg1.h"
+#import "TeacherDashboardViewController.h"
 @interface attendencedetail()
+{
+    
+}
 @property (strong, nonatomic) IBOutlet UIView *view_currentSchool;
 @property (strong, nonatomic) IBOutlet UIView *view_schoolyear;
 @property (strong, nonatomic) IBOutlet UIView *view_subject;
@@ -1889,22 +1896,37 @@ else if (pickerView.tag==60)
 #pragma mark Tabbar
 -(IBAction)home:(id)sender
 {
-    
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     TeacherDashboardViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"dash"];
-    vc.dic=dic;
-    vc.dic_techinfo=dic_techinfo;
-    
-    
-    
-    
     [self.navigationController pushViewController:vc animated:NO];
-    
-    
-    
 }
 
+-(IBAction)thirdbutton:(id)sender
+{
+    NSLog(@"third");
+}
+
+#pragma mark---Msg
+-(IBAction)msg:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"msg" bundle:nil];
+    msg1*obj = [sb instantiateViewControllerWithIdentifier:@"msg1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+#pragma mark—Settings
+-(IBAction)settings:(id)sender{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Settings"bundle:nil];
+    SettingsMenu *obj = [sb instantiateViewControllerWithIdentifier:@"SettingsMenu"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+
+#pragma mark -- calendar
+-(IBAction)calendar:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"schoolinfo"bundle:nil];
+    Month1ViewController *obj = [sb instantiateViewControllerWithIdentifier:@"month1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
 
 
 -(void)tabledata

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface WeekViewCell : UITableViewCell
-@property(strong,nonatomic)IBOutlet UILabel *lbl_title,*lbl_period,*lbl_room,*lbl_term,*lbl_time, *lbl_time2;
+
+@property(strong,nonatomic)IBOutlet UILabel *lbl_title,*lbl_period,*lbl_room,*lbl_term,*lbl_time, *lbl_time2 ,*periodname_lbl ,*time_lbl,*lbl_present;
 @property(strong,nonatomic)IBOutlet UILabel *day1,*day2,*day3,*day4,*day5,*day6,*day7;
 @end

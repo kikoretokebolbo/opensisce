@@ -11,8 +11,10 @@
 @interface StudentScheduleViewController : UIViewController
 {
     IBOutlet UILabel *label_nodata;
+    IBOutlet UILabel *label_titleforthisPage;
 }
 
+@property (strong) NSString *studentName;
 @property (strong) NSString *studentID;
 
 @end

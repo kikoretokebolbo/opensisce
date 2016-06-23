@@ -165,9 +165,10 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         _dailySubViewContainer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0 + DAY_TITLE_VIEW_HEIGHT, self.bounds.size.width, DATE_VIEW_HEIGHT)];
         _dailySubViewContainer.layer.borderWidth = 1.0f;
         _dailySubViewContainer.layer.borderColor = [[UIColor colorWithHex:0x7AA248] CGColor];
-        _dailySubViewContainer.backgroundColor = [UIColor colorWithRed:0.996f  green:0.937f  blue:0.824f alpha:1.0f];
+        _dailySubViewContainer.backgroundColor = [UIColor  colorWithRed:0.996f  green:0.937f  blue:0.824f alpha:1.0f];
 
         _dailySubViewContainer.userInteractionEnabled = YES;
+        
         
     }
     return _dailySubViewContainer;
@@ -182,7 +183,6 @@ static float const CLCalendarSelectedDatePrintFontSizeDefault = 13.f;
         [_backgroundImageView addSubview:self.dayTitleSubViewContainer];
         [_backgroundImageView addSubview:self.dailySubViewContainer];
         [_backgroundImageView addSubview:self.dailyInfoSubViewContainer];
-        
         
         //Apply swipe gesture
         UISwipeGestureRecognizer *recognizerRight;

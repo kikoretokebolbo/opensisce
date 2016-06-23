@@ -11,8 +11,8 @@
 
 @interface GradebookConfigController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate>
 {
-   
-    NSMutableArray *ary_assign_title,*ary_assign_value,*ary_sem,*ary_sem_value;
+    
+    NSMutableArray *ary_assign_title,*ary_assign_value,*ary_sem,*ary_semmmmm,*ary_sem_value;
     NSString *assign_id;
     UIPickerView * selectcustomerpicker;
 }

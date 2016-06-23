@@ -16,6 +16,7 @@
 }
 
 -(IBAction)click:(id)sender;
+- (IBAction)back:(id)sender;
 -(void)callgetdata;
 -(void)tablereload;
 @end

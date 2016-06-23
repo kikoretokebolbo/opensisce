@@ -12,7 +12,11 @@
 #import "TeacherDashboardViewController.h"
 #import "ip_url.h"
 #include "StudentScheduleViewController.h"
-
+#import "SettingsMenu.h"
+#import "Month1ViewController.h"
+#import "SettingsMenu.h"
+#import "msg1.h"
+#import "TeacherDashboardViewController.h"
 
 @interface StudentListController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -38,6 +42,19 @@
 }
 
 //
+#pragma mark---Settings
+
+-(IBAction)settings:(id)sender
+{
+    
+    
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Settings" bundle:nil];
+    SettingsMenu *obj = [sb instantiateViewControllerWithIdentifier:@"SettingsMenu"];
+    
+    
+    [self.navigationController pushViewController:obj animated:YES];
+    
+}
 
 -(void)loaddata
 {
@@ -74,8 +91,14 @@
     NSString *url12=[NSString stringWithFormat:@"%@%@",str123,str_checklogin];
     
     NSLog(@"----%@",url12);
-    NSURL *url = [NSURL URLWithString:url12];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSString *urlEncoded = [url12 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSLog(@"----%@",url12);
+    // NSURL *url = [NSURL URLWithString:url12];
+    // NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest  *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlEncoded]];
+    //NSURL *url = [NSURL URLWithString:url12];
+   // NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     
     // 2
@@ -141,6 +164,7 @@
     StudentScheduleViewController *slc = [[StudentScheduleViewController alloc]init];
     slc = [sb instantiateViewControllerWithIdentifier:@"studentscheduleview"];
     slc.studentID = [[array_studentData objectAtIndex:indexPath.row] objectForKey:@"STUDENT_ID"];
+    slc.studentName = [[array_studentData objectAtIndex:indexPath.row] objectForKey:@"FULL_NAME"];
     
     [self.navigationController pushViewController:slc animated:YES];
 }
@@ -162,6 +186,26 @@
     
 }
 
+-(IBAction)thirdButton:(id)sender
+{
+    NSLog(@"Third Button");
+}
+
+#pragma mark---Msg
+-(IBAction)msg:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"msg" bundle:nil];
+    msg1*obj = [sb instantiateViewControllerWithIdentifier:@"msg1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+
+#pragma mark -- calendar
+-(IBAction)calendar:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"schoolinfo"bundle:nil];
+    Month1ViewController *obj = [sb instantiateViewControllerWithIdentifier:@"month1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
 
 
 

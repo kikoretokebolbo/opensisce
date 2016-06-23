@@ -9,13 +9,16 @@
 #import "ip_url.h"
 
 #import "AFNetworking.h"
-
+#import "AppDelegate.h"
 @implementation ip_url
 @synthesize url,url2,url3,url4;
 -(NSString *)ipurl
 {
     
-    return url=@"http://107.170.94.176/openSIS_CE6_Mobile/webservice";
+ // return url=@"http://107.170.94.176/openSIS_CE6_Mobile/webservice";
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+     return url=appDelegate.str_txt_url;
+   // return url=@"http://demo.opensis.com/opensis/webservice";
     
 //    ip_url *obj=[[ip_url alloc]init];
 //    ip=[obj ipurl];

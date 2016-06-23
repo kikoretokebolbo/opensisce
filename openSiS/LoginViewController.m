@@ -11,6 +11,8 @@
 #import "ip_url.h"
 #import "AppDelegate.h"
 #import "FrogotLoginnPasswordViewController.h"
+#import "SdashboardViewController.h"
+
 @interface LoginViewController ()
 
 {
@@ -176,7 +178,10 @@
     {
         
         
+       
         
+
+
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             
@@ -221,7 +226,10 @@
      [df setObject:str_select forKey:@"pro"];
     
     NSString*str_checklogin=[NSString stringWithFormat:@"/teacher_info.php?username=%@&password=%@&profile=%@",username.text,password.text,str_select];
+    
+    
     NSLog(@"kkkkkkkkkkk%@",str_checklogin);
+    
     NSString *url12=[NSString stringWithFormat:@"%@%@",ip,str_checklogin];
     NSURL *url = [NSURL URLWithString:url12];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -232,6 +240,11 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     operation.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"]; // Add korlam bcoz sob content type support korena
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSMutableDictionary *  sdictionary=[[NSMutableDictionary alloc]init];
+        sdictionary = (NSMutableDictionary *)responseObject;
+        NSLog(@"%@",sdictionary);
+        
         
         NSMutableDictionary *  dictionary1=[[NSMutableDictionary alloc]init];
         dictionary1 = (NSMutableDictionary *)responseObject;
@@ -247,39 +260,78 @@
             //   NSUserDefaults *obj12=[NSUserDefaults standardUserDefaults];
             
             //  [obj12 setObject:dictionary1 forKey:@"profile_data"];
-            
-            
             AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             //someString = appDelegate.dic;  //..to read
             appDelegate.dic =dictionary1;
             appDelegate.dic_techinfo=dictionary1;
-               appDelegate.dic_term =dictionary1;
+            appDelegate.dic_term =dictionary1;
             appDelegate.dic_year=dictionary1;
             appDelegate.dic_sub=dictionary1;
             appDelegate.dic_course=dictionary1;
-             appDelegate.dic_school=dictionary1;
+            appDelegate.dic_school=dictionary1;
+            if([str_select isEqualToString:@"teacher"])
+            {
+
+          
+
+            
+//            UIStoryboard *s=[UIStoryboard storyboardWithName:@"StudentDashboard" bundle:nil];
+//            
+//            SdashboardViewController *obj12=[s instantiateViewControllerWithIdentifier:@"studentdash"];
+//            obj12.dic=dictionary1;
+//            obj12.dic_techinfo=dictionary1;
+//            [self.navigationController pushViewController:obj12 animated:YES];
+            
+            
             UIStoryboard *s=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
             
             TeacherDashboardViewController *obj1=[s instantiateViewControllerWithIdentifier:@"dash"];
             obj1.dic=dictionary1;
             obj1.dic_techinfo=dictionary1;
             [self.navigationController pushViewController:obj1 animated:YES];
+//
+//
+                
+            }
             
             
+            else
+            {
+            
+                UIStoryboard *s=[UIStoryboard storyboardWithName:@"StudentDashboard" bundle:nil];
+                
+                            SdashboardViewController *obj12=[s instantiateViewControllerWithIdentifier:@"studentdash"];
+                            obj12.dic=dictionary1;
+                            obj12.dic_techinfo=dictionary1;
+                            [self.navigationController pushViewController:obj12 animated:YES];
+
+            
+            }
             
         }
+       
         
         
         else
         {
+            
+//            UIStoryboard *s=[UIStoryboard storyboardWithName:@"StudentDashboard" bundle:nil];
+//            
+//            SdashboardViewController *obj12=[s instantiateViewControllerWithIdentifier:@"studentdash"];
+//            obj12.dic=dictionary1;
+//            obj12.dic_techinfo=dictionary1;
+//            [self.navigationController pushViewController:obj12 animated:YES];
+//            
+
+            
             NSString *str_msg=[NSString stringWithFormat:@"%@",[dictionary1 objectForKey:@"err_msg"]];
             
             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Alert" message:str_msg delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
             [alert show];
             
-            //  transparentView.hidden=NO;
-           // NSLog(@"ok----");
-            //[self.view addSubview:transparentView];
+           //   transparentView.hidden=NO;
+            NSLog(@"ok----");
+         //   [self.view addSubview:transparentView];
             
         }
         
@@ -323,6 +375,15 @@
     
        password.text=@"";
 
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+//    username.text = @"teacher";
+//    password.text = @"teacher@123";
+    
+    username.text = @"student";
+    password.text = @"student";
 }
 
 -(IBAction)alertOK:(id)sender

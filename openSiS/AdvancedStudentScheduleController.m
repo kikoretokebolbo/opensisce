@@ -9,7 +9,11 @@
 #import "AdvancedStudentScheduleController.h"
 #import "StudentListController.h"
 #import "TeacherDashboardViewController.h"
-
+#import "SettingsMenu.h"
+#import "Month1ViewController.h"
+#import "SettingsMenu.h"
+#import "msg1.h"
+#import "TeacherDashboardViewController.h"
 @interface AdvancedStudentScheduleController ()
 
 
@@ -61,6 +65,19 @@
     [self loadcaleder4];
     [self loadcaleder5];
     [self loadcaleder6];
+}
+#pragma mark---Settings
+
+-(IBAction)settings:(id)sender
+{
+    
+    
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Settings" bundle:nil];
+    SettingsMenu *obj = [sb instantiateViewControllerWithIdentifier:@"SettingsMenu"];
+    
+    
+    [self.navigationController pushViewController:obj animated:YES];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -457,6 +474,26 @@
     
     [self.navigationController pushViewController:vc animated:NO];
     
+}
+-(IBAction)thirdButton:(id)sender
+{
+    NSLog(@"Third Button");
+}
+
+#pragma mark---Msg
+-(IBAction)msg:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"msg" bundle:nil];
+    msg1*obj = [sb instantiateViewControllerWithIdentifier:@"msg1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+
+#pragma mark -- calendar
+-(IBAction)calendar:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"schoolinfo"bundle:nil];
+    Month1ViewController *obj = [sb instantiateViewControllerWithIdentifier:@"month1"];
+    [self.navigationController pushViewController:obj animated:YES];
 }
 
 

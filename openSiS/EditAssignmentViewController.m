@@ -9,7 +9,10 @@
 #import "EditAssignmentViewController.h"
 #import "AppDelegate.h"
 #import "TeacherDashboardViewController.h"
-
+#import "Month1ViewController.h"
+#import "SettingsMenu.h"
+#import "msg1.h"
+#import "TeacherDashboardViewController.h"
 
 @interface EditAssignmentViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *text_title;
@@ -21,6 +24,7 @@
 @property(strong,nonatomic)IBOutlet UILabel *percent_total,*percent_lbl;
 
 @property(strong,nonatomic)IBOutlet UIView *view_line,*view_line1;
+@property (strong, nonatomic) IBOutlet UILabel *msg_count_tab;
 
 
 @property (strong, nonatomic)NSString *weight_value;
@@ -78,6 +82,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    
+    
+    self.msg_count_tab.text=[NSString stringWithFormat:@"%@",[appDelegate.dic objectForKey:@"message_count"]];
     [self design:self.view_title];
     [self design:self.view_finalgrade];
     
@@ -337,6 +347,32 @@
     
     
     
+}
+-(IBAction)thirdButton:(id)sender
+{
+    NSLog(@"Third Button");
+}
+
+#pragma mark---Msg
+-(IBAction)msg:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"msg" bundle:nil];
+    msg1*obj = [sb instantiateViewControllerWithIdentifier:@"msg1"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+#pragma mark—Settings
+-(IBAction)settings:(id)sender{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"Settings"bundle:nil];
+    SettingsMenu *obj = [sb instantiateViewControllerWithIdentifier:@"SettingsMenu"];
+    [self.navigationController pushViewController:obj animated:YES];
+}
+
+#pragma mark -- calendar
+-(IBAction)calendar:(id)sender
+{
+    UIStoryboard *sb=[UIStoryboard storyboardWithName:@"schoolinfo"bundle:nil];
+    Month1ViewController *obj = [sb instantiateViewControllerWithIdentifier:@"month1"];
+    [self.navigationController pushViewController:obj animated:YES];
 }
 
 

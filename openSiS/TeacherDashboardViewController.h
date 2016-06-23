@@ -42,8 +42,8 @@
     NSMutableArray *ary_data,*img_ary;
     IBOutlet UITextField *lbl_hidden;
     
-    IBOutlet UILabel *notofi,*msg_count,*msg_count_tab;
-    
+    IBOutlet UILabel *notofi,*msg_count_tab;
+    IBOutlet UILabel *msg_count;
 }
 @property(strong,nonatomic) NSString *school_id,*school_year1,*str_term1,*str_sub1,*str_cou1,*str_cp1,*profile;
 @property(strong,nonatomic)NSMutableDictionary *dic,*dic_techinfo;

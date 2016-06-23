@@ -43,10 +43,10 @@
    
     IBOutlet UITextField *lbl_hidden;
     
-    IBOutlet UILabel *notofi,*msg_count,*msg_count_tab;
+    IBOutlet UILabel *notofi,*msg_count;
     IBOutlet UIView *transparentView;
     
-    
+    IBOutlet UILabel *msg_count_tab;
     IBOutlet UIPickerView *pick12;
     IBOutlet UIView *view1236;
     
